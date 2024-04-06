@@ -9,7 +9,8 @@ final class UserData extends Data
 {
     public function __construct(
         public readonly ?int $id,
-        public readonly string $name,
+        public readonly string $first_name,
+        public readonly string $last_name,
         public readonly string $email,
         public readonly ?CarbonInterface $email_verified_at,
     ) {

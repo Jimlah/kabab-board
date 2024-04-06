@@ -7,7 +7,7 @@ use Spatie\LaravelData\Data;
 class SecurityData extends Data
 {
     public function __construct(
-        public readonly ?UserData $user
+        public readonly ?UserData $user,
     ) {
     }
 }
