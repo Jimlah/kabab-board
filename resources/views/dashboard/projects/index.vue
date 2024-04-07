@@ -56,7 +56,10 @@ const projects = useTable($props, 'projects');
                 </div>
             </div>
             <div class="flex items-end gap-2">
-                <AddProject />
+                <router-link class="bg-zinc-950 hover:bg-zinc-800 px-4 py-2 text-white rounded-md"
+                    :href="route('projects.create')">
+                    New Project
+                </router-link>
                 <TabsList>
                     <TabsTrigger value="table">
                         <Table2 />
@@ -66,6 +69,10 @@ const projects = useTable($props, 'projects');
                     </TabsTrigger>
                 </TabsList>
             </div>
+        </div>
+        <div class="my-4">
+            <Button size="sm" class="bg-red-500" v-for="(action, index) in projects.bulkActions" @click="action.execute"
+                v-text="action.label" :key="index"></Button>
         </div>
         <TabsContent value="table">
             <Table :projects="projects" />

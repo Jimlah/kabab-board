@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Project;
+use Illuminate\Http\Request;
+use App\Tables\ProjectsTable;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
-use App\Models\Project;
-use App\Models\User;
-use App\Tables\ProjectsTable;
+use Hybridly\Support\Header;
 
 class ProjectController extends Controller
 {
@@ -27,9 +29,15 @@ class ProjectController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        if (!$request->isHybrid()) {
+            return redirect()->route('projects.index');
+        }
+
+        $project = new Project();
+        return hybridly('dashboard.projects.create', compact('project'))
+            ->base('dashboard.projects.index');
     }
 
     /**
@@ -37,8 +45,9 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        $project = Project::create([...$request->validated(), 'user_id' => auth()->id()]);
-        return back();
+        Project::create([...$request->validated(), 'user_id' => auth()->id()]);
+        session()->flash('success', 'Project created successfully.');
+        return redirect()->route('projects.index');
     }
 
     /**
@@ -52,9 +61,13 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Project $project)
+    public function edit(Project $project, Request $request)
     {
-        //
+        if (!$request->isHybrid()) {
+            return redirect()->route('projects.index');
+        }
+        return hybridly('dashboard.projects.create', compact('project'))
+            ->base('dashboard.projects.index');
     }
 
     /**
@@ -62,7 +75,9 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        $project->update($request->validated());
+        session()->flash('success', 'Project updated successfully.');
+        return redirect()->route('projects.index');
     }
 
     /**

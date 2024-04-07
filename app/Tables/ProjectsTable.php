@@ -3,14 +3,15 @@
 namespace App\Tables;
 
 use App\Models\Project;
-use Hybridly\Refining\Filters\Filter;
+use Hybridly\Tables\Table;
 use Hybridly\Refining\Sorts;
 use Hybridly\Tables\Actions;
 use Hybridly\Tables\Columns;
-use Hybridly\Tables\Columns\TextColumn;
-use Hybridly\Tables\Table;
-use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
+use Hybridly\Refining\Filters\Filter;
+use Hybridly\Tables\Actions\BulkAction;
+use Hybridly\Tables\Columns\TextColumn;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
 final class ProjectsTable extends Table
 {
@@ -47,7 +48,11 @@ final class ProjectsTable extends Table
 
     protected function defineActions(): array
     {
-        return [];
+        return [
+            BulkAction::make('delete')
+                ->label('Delete')
+                ->action(fn (Collection $projects) => dd($projects))
+        ];
     }
 
     protected function defineQuery(): Builder
