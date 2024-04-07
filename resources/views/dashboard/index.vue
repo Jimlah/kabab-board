@@ -8,16 +8,7 @@ import Label from '~/resources/components/ui/label/Label.vue';
 
 
 useHead({
-    title: 'Login'
-})
-// const fields = useProperties();
-const action = useForm({
-    method: 'POST',
-    url: '/auth/login',
-    fields: {
-        email: "",
-        password: "",
-    }
+    title: 'Dashboard'
 })
 </script>
 
