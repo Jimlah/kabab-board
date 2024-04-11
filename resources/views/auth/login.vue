@@ -1,21 +1,22 @@
 <script setup lang="ts">
+import { App } from 'vue';
 import Button from '~/resources/components/ui/button/Button.vue';
 import CardHeader from '~/resources/components/ui/card/CardHeader.vue';
 import CardTitle from '~/resources/components/ui/card/CardTitle.vue';
 import Input from '~/resources/components/ui/input/Input.vue';
 import Label from '~/resources/components/ui/label/Label.vue';
 
-
 useHead({
     title: 'Login'
 })
-// const fields = useProperties();
+
+const auth_user = useProperty('auth_user');
 const action = useForm({
     method: 'POST',
     url: '/auth/login',
     fields: {
-        email: "konaryf@mailinator.com",
-        password: "Pa$$w0rd!",
+        email: auth_user.value?.email || '',
+        password: auth_user.value?.email ? "Pa$$w0rd!" : '',
     }
 })
 </script>

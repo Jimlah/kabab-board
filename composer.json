@@ -12,6 +12,7 @@
         "hybridly/laravel": "^0.7.3",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
+        "silber/bouncer": "^1.0",
         "spatie/laravel-data": "^4.5"
     },
     "require-dev": {

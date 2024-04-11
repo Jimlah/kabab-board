@@ -21,6 +21,7 @@ watch(flash, (value) => {
         toast(value[type as keyof App.Data.FlashData] || 'An error occurred', {})
     }
 })
+
 </script>
 
 <template>
@@ -113,7 +114,9 @@ watch(flash, (value) => {
                             <DropdownMenuItem>Settings</DropdownMenuItem>
                             <DropdownMenuItem>Support</DropdownMenuItem>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem>Logout</DropdownMenuItem>
+                            <DropdownMenuItem as-child>
+                                <router-link :href="route('logout')">Logout</router-link>
+                            </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </header>

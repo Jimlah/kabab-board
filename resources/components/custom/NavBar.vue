@@ -3,6 +3,7 @@ import { Bell, ClipboardCheck, Home, LineChart, Package, Package2, ShoppingCart,
 import Button from '../ui/button/Button.vue';
 import Badge from '../ui/badge/Badge.vue';
 
+const projectCount = useProperty('security.project_count').value;
 </script>
 
 <template>
@@ -30,7 +31,7 @@ import Badge from '../ui/badge/Badge.vue';
                         <ClipboardCheck class="h-4 w-4" />
                         Projects
                         <Badge class="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                            6
+                            {{ projectCount }}
                         </Badge>
                     </router-link>
                     <a href="#"
