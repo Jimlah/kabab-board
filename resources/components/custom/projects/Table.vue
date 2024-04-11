@@ -50,6 +50,8 @@ const props = defineProps<{
                 <TableCell v-text="record.description"></TableCell>
                 <TableCell v-text="record.user"></TableCell>
                 <TableCell class="text-right">
+                    <router-link :href="route('projects.workflows.index', { project: record.id })"
+                        class="text-blue-500">View</router-link>
                     <router-link :href="route('projects.edit', { project: record })"
                         class="text-blue-500">Edit</router-link>
                 </TableCell>

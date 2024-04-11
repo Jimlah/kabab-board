@@ -32,7 +32,7 @@ const action = useForm({
 const { show, close, unmount } = useDialog()
 </script>
 
-<template layout>
+<template>
     <div>
         <Sheet :open="show">
             <SheetContent>

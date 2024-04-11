@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\WorkflowController;
 
 Route::get('/', function () {
     return hybridly('welcome');
@@ -28,4 +29,5 @@ Route::group(['prefix' => 'auth', 'as' => 'auth.', 'middleware' => 'guest'], fun
 Route::group(['middleware' => 'auth'], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('projects', ProjectController::class);
+    Route::resource('projects.workflows', WorkflowController::class);
 });

@@ -14,8 +14,8 @@ const action = useForm({
     method: 'POST',
     url: '/auth/login',
     fields: {
-        email: "",
-        password: "",
+        email: "konaryf@mailinator.com",
+        password: "Pa$$w0rd!",
     }
 })
 </script>

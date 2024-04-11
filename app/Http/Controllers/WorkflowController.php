@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreWorkflowRequest;
 use App\Http\Requests\UpdateWorkflowRequest;
+use App\Models\Project;
 use App\Models\Workflow;
 
 class WorkflowController extends Controller
@@ -11,9 +12,9 @@ class WorkflowController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Project $project)
     {
-        //
+        return hybridly('dashboard.workflows.index', compact('project'));
     }
 
     /**
