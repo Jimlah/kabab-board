@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use WendellAdriel\Lift\Attributes\Relations\BelongsTo;
 
 /**
  * @mixin IdeHelperWorkflow
  */
+#[BelongsTo(Project::class)]
 class Workflow extends Model
 {
     use HasFactory, HasUlids;

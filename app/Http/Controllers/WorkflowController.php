@@ -6,6 +6,7 @@ use App\Http\Requests\StoreWorkflowRequest;
 use App\Http\Requests\UpdateWorkflowRequest;
 use App\Models\Project;
 use App\Models\Workflow;
+use App\Tables\WorkflowTable;
 use Illuminate\Http\Request;
 
 class WorkflowController extends Controller
@@ -15,7 +16,8 @@ class WorkflowController extends Controller
      */
     public function index(Project $project)
     {
-        return hybridly('dashboard.workflows.index', compact('project'));
+        $workflows = WorkflowTable::make();
+        return hybridly('dashboard.workflows.index', compact('project', 'workflows'));
     }
 
     /**

@@ -30,7 +30,7 @@ console.log(props)
 
 const action = useForm({
     method: props.workflow.id ? 'put' : 'post',
-    url: props.workflow.id ? route('projects.workflows.update', { project: props.project, workflow: props.workflow }) : route('projects.workflows.store', { project: props.project }),
+    url: props.workflow.id ? route('projects.workflows.update', { project: props.project, workflow: props.workflow }) : route('projects.workflows.store', { project: props.project.id }),
     fields: {
         name: props.workflow.name || '',
         description: props.workflow.description || '',
