@@ -6,6 +6,7 @@ use App\Http\Requests\StoreWorkflowRequest;
 use App\Http\Requests\UpdateWorkflowRequest;
 use App\Models\Project;
 use App\Models\Workflow;
+use Illuminate\Http\Request;
 
 class WorkflowController extends Controller
 {
@@ -20,17 +21,24 @@ class WorkflowController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Project $project, Request $request)
     {
-        //
+        if (!$request->isHybrid()) {
+            return redirect()->route('projects.workflows.index', compact('project'));
+        }
+        $workflow = new Workflow();
+        return hybridly('dashboard.workflows.create', compact('project', 'workflow'))
+            ->base('dashboard.workflows.index', compact('project'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreWorkflowRequest $request)
+    public function store(StoreWorkflowRequest $request, Project $project)
     {
-        //
+        $project->workflows()->create($request->validated());
+        session()->flash('success', 'Workflow created successfully.');
+        return redirect()->route('projects.workflows.index', compact('project'));
     }
 
     /**

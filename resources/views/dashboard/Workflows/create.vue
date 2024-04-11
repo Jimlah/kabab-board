@@ -19,14 +19,21 @@ const props = defineProps<{
         name?: string,
         description?: string,
     }
+    workflow: {
+        id?: string,
+        name?: string,
+        description?: string,
+    }
 }>()
 
+console.log(props)
+
 const action = useForm({
-    method: props.project.id ? 'put' : 'post',
-    url: props.project.id ? route('projects.update', { project: props.project }) : '/projects',
+    method: props.workflow.id ? 'put' : 'post',
+    url: props.workflow.id ? route('projects.workflows.update', { project: props.project, workflow: props.workflow }) : route('projects.workflows.store', { project: props.project }),
     fields: {
-        name: props.project.name || '',
-        description: props.project.description || '',
+        name: props.workflow.name || '',
+        description: props.workflow.description || '',
     }
 })
 const { show, close, unmount } = useDialog()
@@ -56,7 +63,7 @@ const { show, close, unmount } = useDialog()
                             v-model="action.fields.description" />
                     </div>
                     <Button type="submit" class="w-full"
-                        v-text="$props.project.id ? 'Update Project' : 'Add Project'"></Button>
+                        v-text="$props.workflow.id ? 'Update Project' : 'Add Project'"></Button>
                 </form>
             </SheetContent>
         </Sheet>
