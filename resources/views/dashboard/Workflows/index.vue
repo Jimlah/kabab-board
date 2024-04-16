@@ -8,6 +8,8 @@ import AvatarFallback from '~/resources/components/ui/avatar/AvatarFallback.vue'
 import AvatarImage from '~/resources/components/ui/avatar/AvatarImage.vue';
 import Button from '~/resources/components/ui/button/Button.vue';
 import Input from '~/resources/components/ui/input/Input.vue';
+import ScrollArea from '~/resources/components/ui/scroll-area/ScrollArea.vue';
+import ScrollBar from '~/resources/components/ui/scroll-area/ScrollBar.vue';
 import Tabs from '~/resources/components/ui/tabs/Tabs.vue';
 import TabsContent from '~/resources/components/ui/tabs/TabsContent.vue';
 import TabsList from '~/resources/components/ui/tabs/TabsList.vue';
@@ -31,8 +33,8 @@ console.log($props.workflows.records);
 </script>
 
 <template layout>
-    <div class="w-full">
-        <Tabs default-value="board" class="w-full">
+    <div class="w-full overflow-hidden">
+        <Tabs default-value="board" class="w-full h-full">
             <div class="flex items-center w-full justify-between">
                 <div class="flex items-center justify-start gap-2">
                 </div>
@@ -51,19 +53,18 @@ console.log($props.workflows.records);
                     </TabsList>
                 </div>
             </div>
-            <!-- <div class="my-4">
-                <Button size="sm" class="bg-red-500" v-for="(action, index) in projects.bulkActions"
-                    @click="action.execute" v-text="action.label" :key="index"></Button>
-            </div> -->
             <TabsContent value="table">
                 Table
             </TabsContent>
-            <TabsContent value="board">
-                <div class="flex items-start justify-start w-full overflow-auto">
-                    <div class="w-full max-w-xs p-6" v-for="item in $props.workflows.records">
-                        Hello world
+            <TabsContent class="w-full h-full" value="board">
+                <ScrollArea class="w-[1200px] h-full">
+                    <div class="flex items-start justify-start w-full gap-2 overflow-x-auto">
+                        <div class="w-[300px] p-6 border h-full" v-for="item in $props.workflows.records">
+                            {{ item.name }}
+                        </div>
                     </div>
-                </div>
+                    <ScrollBar orientation="horizontal" />
+                </ScrollArea>
             </TabsContent>
         </Tabs>
     </div>

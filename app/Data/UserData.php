@@ -10,7 +10,7 @@ final class UserData extends Data
 {
     use Dumpable;
     public function __construct(
-        public readonly ?int $id,
+        public readonly ?string $id,
         public readonly string $first_name,
         public readonly string $last_name,
         public readonly string $email,

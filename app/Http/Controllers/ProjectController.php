@@ -45,9 +45,9 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        Project::create([...$request->validated(), 'user_id' => auth()->id()]);
-        session()->flash('success', 'Workflow created successfully.');
-        return redirect()->route('projects.workflows.index', compact('project'));
+        $project = Project::create([...$request->validated(), 'user_id' => auth()->id()]);
+        session()->flash('success', 'Project created successfully.');
+        return redirect()->route('projects.index');
     }
 
     /**
